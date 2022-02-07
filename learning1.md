@@ -10,7 +10,7 @@
 2. Instructor: Damian
 3. handle by: Surya
 
-**what i've learnt :**
+**What i've learnt :**
 
 1. We have to consider the duration and variation of the animation depend on where we have to apply the animation
 2. The animation have to nice and smooth, try to make it more natural and consider the physics law,
