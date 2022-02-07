@@ -1,7 +1,5 @@
 # LEARNING 1
 
----
-
 ## Applying nice animation to box card
 
 **Detail:**
