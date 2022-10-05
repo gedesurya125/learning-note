@@ -1,6 +1,6 @@
 # Scroll Smoother With Gatsby
 
-1. Create a hook like code bellow
+1. Create a hook like code bellow. Note: we should keep in mind that smoothScroller will be set up globally at layout index, and because of smoothScroller is created on ScrollTrigger, it means we use same ScrollTrigger everywhere between pages
 
 ```js
 // scrollSmootherContext.js
@@ -40,12 +40,12 @@ export const SmootherProvider = ({ children }) => {
     resizeObserver.observe(document.body);
 
     return () => {
-      // important to make the navbar animation (that use hide on scroll down) not break. It make the page scrolled to the top before it is refresed.
+      // important to make the navbar animation (that use hide on scroll down) not break. It make the page scrolled to the top before it is refresed. false means don't animate the scrolling
       scroller.scrollTo(0, false);
       // refresth the scroller and the scroll triggered animation inside, we use refresh instead of kill because it will used in layout component , if we kill, the scroller , it sill no longer exits at all pages
       scroller.refresh();
     };
-    // We need to recreate the scroll smoother each page change, to make the scroll trigger have a new reference
+    // We need to recreate the scroll smoother each page change, to make the scroll trigger have a new reference, if not the old scrollSmoother properties will be applied to new page for example, page height, and ScrollTrigger markers
   }, [pathname]);
 
   return (
@@ -104,11 +104,11 @@ export const createAnimation = () => {
   // Elements
   const elementToAnimate = document.querySelector(".element-to-animate");
 
-  //Sometimes it's required, to fix issue with scrollSmotther that when back to this page, the element not use its last animated position as initial
+  //Sometimes it's required, to fix issue with scrollSmotther that when we back to this page the element would not use it's last animated position as a initial value
   ScrollTrigger.saveStyles(elementToAnimate);
 
   // Create tl variable to store the animation, so we can kill it manually latter
-  // because scrollTrigger inside the match media not killed properlly
+  // because scrollTrigger inside the match media not killed properlly as what should be done by the ScrollTrigger.matchMedia
   let tl;
   ScrollTrigger.matchMedia({
     // Example of breakpoints
