@@ -64,12 +64,14 @@ export const SmootherProvider = ({ children }) => {
 // layout/index.js
 
 <>
+  {/* Other wrapper goes here*/}
   {/* Navigation bar need to be outside as it's Fixed positioned*/}
   <Navigation />
   <SmootherProvider>
     <Box as="main">{/* Content Goes Here */}</Box>
     <Footer />
   </SmootherProvider>
+  {/* Other closing wrapper goes here*/}
 </>
 ```
 
